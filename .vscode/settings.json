@@ -1,0 +1,19 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "emmet.preferences": {},
+  "emmet.includeLanguages": {
+    "django-html": "html",
+    "jinja-html": "html"
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "HookyQR.beautify",
+    "editor.quickSuggestions": {
+        "comments": true,
+        "other": true,
+        "strings": true
+    },
+    "editor.tabSize": 4,
+    "editor.wordWrap": "on"
+}
+}
