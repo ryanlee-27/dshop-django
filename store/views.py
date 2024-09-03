@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
+from accounts.models import UserProfile
 from carts.models import CartItem
 from carts.views import _cart_id
 from category.models import Category
@@ -7,7 +8,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from orders.models import OrderProduct
 from store.forms import ReviewForm
-from .models import Product, ReviewRating
+from .models import Product, ProductGallery, ReviewRating
 from django.db.models import Q
 # Create your views here.
 
@@ -60,11 +61,18 @@ def product_detail(request, category_slug, product_slug):
     reviews = ReviewRating.objects.filter(
         product_id=single_product.id, status=True)
 
+    userprofile = UserProfile.objects.get(user_id=request.user.id)
+
+    product_gallery = ProductGallery.objects.filter(
+        product_id=single_product.id)
+
     context = {
         'single_product': single_product,
         'in_cart': in_cart,
         'orderproduct': orderproduct,
         'reviews': reviews,
+        'userprofile': userprofile,
+        'product_gallery': product_gallery,
     }
     return render(request, 'store/product_detail.html', context)
 
